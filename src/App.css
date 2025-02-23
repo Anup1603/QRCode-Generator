@@ -22,29 +22,48 @@
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 350px;
+  width: 400px;
 }
 
 /* Title */
 .card h1 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #333;
-  font-size: 24px;
+  font-size: 28px;
+}
+
+/* Subtitle */
+.card .subtitle {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
 }
 
 /* Input Field */
 .card input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
   border: 2px solid #ddd;
   border-radius: 6px;
   outline: none;
   transition: 0.3s;
+  font-size: 14px;
 }
 
 .card input:focus {
   border-color: #007bff;
+}
+
+/* Input Error */
+.input-error {
+  border-color: #ff4d4d !important;
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 /* Generate Button */
@@ -67,7 +86,7 @@
 /* QR Code Container */
 .qr-container {
   margin-top: 20px;
-  padding: 15px;
+  padding: 20px;
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -75,8 +94,8 @@
 
 /* QR Code Image */
 .qr-container img {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   margin-bottom: 15px;
 }
 

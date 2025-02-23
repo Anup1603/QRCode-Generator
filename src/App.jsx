@@ -5,15 +5,23 @@ import "./App.css";
 const App = () => {
   const [url, setUrl] = useState("");
   const [qrImage, setQrImage] = useState("");
+  const [error, setError] = useState("");
 
-  const handleGenerateQR = async () => {
-    if (url.trim() !== "") {
-      try {
-        const qrDataUrl = await QRCode.toDataURL(url);
-        setQrImage(qrDataUrl);
-      } catch (err) {
-        console.error("Error generating QR Code:", err);
-      }
+  const handleGenerateQR = async (e) => {
+    e.preventDefault();
+
+    if (url.trim() === "") {
+      setError("Please enter a valid URL.");
+      return;
+    }
+
+    try {
+      const qrDataUrl = await QRCode.toDataURL(url);
+      setQrImage(qrDataUrl);
+      setError("");
+    } catch (err) {
+      console.error("Error generating QR Code:", err);
+      setError("Failed to generate QR Code. Please try again.");
     }
   };
 
@@ -32,16 +40,22 @@ const App = () => {
     <div className="container">
       <div className="card">
         <h1>QR Code Generator</h1>
-        <input
-          type="text"
-          placeholder="Enter URL"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        />
-        <button className="generate-btn" onClick={handleGenerateQR}>
-          Generate QR Code
-        </button>
+        <p className="subtitle">Create custom QR codes in seconds!</p>
 
+        <form onSubmit={handleGenerateQR}>
+          <input
+            type="text"
+            placeholder="Enter URL"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className={error ? "input-error" : ""}
+          />
+          {error && <p className="error-message">{error}</p>}
+
+          <button className="generate-btn">Generate QR Code</button>
+        </form>
+
+        {/* QR Code Display */}
         {qrImage && (
           <div className="qr-container">
             <img src={qrImage} alt="Generated QR Code" />
